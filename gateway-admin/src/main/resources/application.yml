@@ -1,0 +1,14 @@
+server.port: 9001
+
+spring.datasource.driver-class-name: com.mysql.cj.jdbc.Driver
+spring.datasource.type: com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url: jdbc:mysql://127.0.0.1:3306/gateway?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+spring.datasource.username: root
+spring.datasource.password: 123456
+
+#ship.server-web-socket-url: ws://127.0.0.1:9999
+#ship.user-password-salt: d5ec0a02
+
+nacos.discovery.server-addr: 127.0.0.1:8848
+
+mybatis-plus.mapper-locations: classpath:/mapper/*.xml
