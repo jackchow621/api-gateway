@@ -33,12 +33,12 @@ public class GatewayExceptionHandler {
         } else if (exception instanceof BindException) {
             BindException bindException = (BindException) exception;
             BindingResult bindingResult = bindException.getBindingResult();
-            shipException = new GatewayException(getErrorMsg(bindingResult));
+            shipException = new GatewayException(getErrorMessage(bindingResult));
 
         } else if (exception instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException validException = (MethodArgumentNotValidException) exception;
             BindingResult bindingResult = validException.getBindingResult();
-            shipException = new GatewayException(getErrorMsg(bindingResult));
+            shipException = new GatewayException(getErrorMessage(bindingResult));
 
         } else {
             shipException = new GatewayException(exception.getMessage());
@@ -46,7 +46,7 @@ public class GatewayExceptionHandler {
         return shipException;
     }
 
-    private String getErrorMsg(BindingResult bindingResult) {
+    private String getErrorMessage(BindingResult bindingResult) {
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         StringBuilder sb = new StringBuilder();
         fieldErrors.forEach(fieldError -> {

@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 /**
  * @program api-gateway
@@ -13,6 +14,21 @@ import java.security.NoSuchAlgorithmException;
  * @create: 2021/07/01 17:31
  */
 public class StringTools {
+    private final static String str = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    /**
+     * generate salt code
+     * @return
+     */
+    public static String salt() {
+        StringBuffer uuid = new StringBuffer();
+        for (int i = 0; i < 8; i++) {
+            char ch = str.charAt(new Random().nextInt(str.length()));
+            uuid.append(ch);
+        }
+        return uuid.toString();
+    }
+
     public static String md5Digest(String value, String salt) {
         String plainText = value + salt;
         byte[] secretBytes = null;

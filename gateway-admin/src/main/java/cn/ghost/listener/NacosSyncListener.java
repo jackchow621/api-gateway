@@ -34,7 +34,7 @@ public class NacosSyncListener implements ApplicationListener<ContextRefreshedEv
     @Value("${nacos.discovery.server-addr}")
     private String baseUrl;
 
-    private static ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1, new ThreadUtil("nacos-sync", true).create());
+    private static ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1, new ThreadUtil("NACOS-SYNC", true).create());
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

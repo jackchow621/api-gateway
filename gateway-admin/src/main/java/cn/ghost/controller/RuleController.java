@@ -22,7 +22,7 @@ import java.util.List;
 public class RuleController {
 
     @Autowired
-    RuleService ruleService;
+    private RuleService ruleService;
 
     @ResponseBody
     @PostMapping("/addRule")
@@ -32,13 +32,13 @@ public class RuleController {
     }
 
     @ResponseBody
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteRule/{id}")
     public Result delete(@PathVariable("id") Integer id) {
         ruleService.delete(id);
         return Result.success();
     }
 
-    @GetMapping("/list")
+    @GetMapping("/rule")
     public String list(ModelMap map, @RequestParam(name = "appName", required = false) String appName) {
         List<RuleVO> ruleVOS = ruleService.queryList(appName);
         map.put("ruleVOS", ruleVOS);
@@ -47,7 +47,7 @@ public class RuleController {
     }
 
     @ResponseBody
-    @PutMapping("/status")
+    @PutMapping("/changeStatus")
     public Result changeStatus(@RequestBody ChangeStatusDTO statusDTO) {
         ruleService.changeStatus(statusDTO);
         return Result.success();

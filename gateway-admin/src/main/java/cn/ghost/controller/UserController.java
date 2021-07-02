@@ -23,7 +23,7 @@ import java.io.IOException;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @ResponseBody
     @PostMapping("/addUser")

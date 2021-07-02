@@ -49,6 +49,7 @@ public class NacosSyncTask implements Runnable {
             // get all app names
             ListView<String> services = namingService.getServicesOfServer(1, Integer.MAX_VALUE, NacosConstants.APP_GROUP_NAME);
             if (CollectionUtils.isEmpty(services.getData())) {
+                log.warn("nacos server hav no services");
                 return;
             }
             List<String> appNames = services.getData();
