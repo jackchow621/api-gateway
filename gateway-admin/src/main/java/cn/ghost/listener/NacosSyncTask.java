@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 19:12
  */
 @Slf4j
@@ -49,7 +49,7 @@ public class NacosSyncTask implements Runnable {
             // get all app names
             ListView<String> services = namingService.getServicesOfServer(1, Integer.MAX_VALUE, NacosConstants.APP_GROUP_NAME);
             if (CollectionUtils.isEmpty(services.getData())) {
-                log.warn("nacos server hav no services");
+                log.warn("nacos server has no services");
                 return;
             }
             List<String> appNames = services.getData();

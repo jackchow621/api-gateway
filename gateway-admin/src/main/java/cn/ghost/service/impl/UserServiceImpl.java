@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:23
  */
 @Service
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     UserMapper userMapper;
 
-//    @Value("${ship.user-password-salt}")
+//    @Value("${gateway.user-password-salt}")
     private String salt;
 
     @Override

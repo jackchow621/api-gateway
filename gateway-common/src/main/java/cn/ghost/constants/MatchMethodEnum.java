@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 18:53
  */
 @AllArgsConstructor

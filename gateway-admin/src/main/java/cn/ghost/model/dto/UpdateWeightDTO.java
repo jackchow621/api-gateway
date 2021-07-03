@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 14:45
  */
 @Data

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:21
  */
 public interface UserService {

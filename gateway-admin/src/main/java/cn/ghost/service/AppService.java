@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 19:24
  */
 public interface AppService {

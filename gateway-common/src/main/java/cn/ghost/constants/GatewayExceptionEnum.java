@@ -9,7 +9,10 @@ public enum GatewayExceptionEnum {
     CONFIG_ERROR(1002, "invalid config"),
     LOGIN_ERROR(1003, "userName or password error"),
     NOT_LOGIN(1004, "not login"),
-    TOKEN_ERROR(1005, "token error");
+    TOKEN_ERROR(1005, "token error"),
+
+    SYSTEM_ERROR(5000, "system error"),
+    NETWORK_TIMEOUT_ERROR(5001, "network timeout");
 
     private Integer code;
 

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 19:00
  */
 @Configuration

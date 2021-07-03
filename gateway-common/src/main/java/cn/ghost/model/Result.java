@@ -1,5 +1,6 @@
 package cn.ghost.model;
 
+import cn.ghost.constants.GatewayExceptionEnum;
 import cn.ghost.exception.GatewayException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:13
  */
 @Data
@@ -40,6 +41,20 @@ public class Result<T> implements Serializable {
         Result<T> result = new Result();
         result.setCode(500);
         result.setMessage("fail");
+        return result;
+    }
+
+    public static <T> Result<T> fail(int code, String message) {
+        Result<T> result = new Result();
+        result.setCode(code);
+        result.setMessage(message);
+        return result;
+    }
+
+    public static <T> Result<T> fail(GatewayExceptionEnum gatewayExceptionEnum) {
+        Result<T> result = new Result();
+        result.setCode(gatewayExceptionEnum.getCode());
+        result.setMessage(gatewayExceptionEnum.getMessage());
         return result;
     }
 

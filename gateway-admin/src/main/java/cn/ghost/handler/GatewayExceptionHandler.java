@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:10
  */
 @RestControllerAdvice
@@ -22,28 +22,28 @@ public class GatewayExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public Result<Void> handlerBusinessException(Exception exception) {
-        return Result.error(transferToShipException(exception));
+        return Result.error(transferToGatewayException(exception));
     }
 
-    private GatewayException transferToShipException(Exception exception) {
-        GatewayException shipException;
+    private GatewayException transferToGatewayException(Exception exception) {
+        GatewayException gatewayException;
         if (exception instanceof GatewayException) {
-            shipException = (GatewayException) exception;
+            gatewayException = (GatewayException) exception;
 
         } else if (exception instanceof BindException) {
             BindException bindException = (BindException) exception;
             BindingResult bindingResult = bindException.getBindingResult();
-            shipException = new GatewayException(getErrorMessage(bindingResult));
+            gatewayException = new GatewayException(getErrorMessage(bindingResult));
 
         } else if (exception instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException validException = (MethodArgumentNotValidException) exception;
             BindingResult bindingResult = validException.getBindingResult();
-            shipException = new GatewayException(getErrorMessage(bindingResult));
+            gatewayException = new GatewayException(getErrorMessage(bindingResult));
 
         } else {
-            shipException = new GatewayException(exception.getMessage());
+            gatewayException = new GatewayException(exception.getMessage());
         }
-        return shipException;
+        return gatewayException;
     }
 
     private String getErrorMessage(BindingResult bindingResult) {

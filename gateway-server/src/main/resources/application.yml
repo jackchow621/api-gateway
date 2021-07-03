@@ -1,0 +1,9 @@
+server.port: 9000
+
+nacos.discovery.server-addr: 127.0.0.1:8848
+
+gateway.load-balance: round
+gateway.time-out-millis: 3000
+gateway.cache-refresh-interval: 10
+gateway.web-socket-port: 9999
+gateway.web-socket-hostname:

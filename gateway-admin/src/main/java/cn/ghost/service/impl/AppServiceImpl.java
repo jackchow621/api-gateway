@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 19:28
  */
 @Service

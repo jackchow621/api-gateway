@@ -5,13 +5,15 @@ import cn.ghost.constants.GatewayExceptionEnum;
 import cn.ghost.constants.MatchMethodEnum;
 import cn.ghost.constants.MatchObjectEnum;
 import cn.ghost.exception.GatewayException;
+import cn.ghost.listener.event.RuleAddEvent;
+import cn.ghost.listener.event.RuleDeleteEvent;
 import cn.ghost.mapper.AppInstanceMapper;
 import cn.ghost.mapper.AppMapper;
 import cn.ghost.mapper.RouteRuleMapper;
+import cn.ghost.model.AppRuleDTO;
 import cn.ghost.model.bean.App;
 import cn.ghost.model.bean.AppInstance;
 import cn.ghost.model.bean.RouteRule;
-import cn.ghost.model.dto.AppRuleDTO;
 import cn.ghost.model.dto.ChangeStatusDTO;
 import cn.ghost.model.dto.RuleDTO;
 import cn.ghost.model.vo.RuleVO;
@@ -23,6 +25,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -30,7 +33,6 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +41,7 @@ import java.util.stream.Collectors;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:54
  */
 @Service
@@ -52,6 +54,8 @@ public class RuleServiceImpl implements RuleService {
     RouteRuleMapper routeRuleMapper;
     @Resource
     AppInstanceMapper appInstanceMapper;
+    @Resource
+    ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public List<AppRuleDTO> getEnabledRule() {
@@ -59,7 +63,7 @@ public class RuleServiceImpl implements RuleService {
         wrapper.lambda().eq(App::getEnabled, EnabledEnum.ENABLE.getCode());
         List<App> apps = appMapper.selectList(wrapper);
         if (CollectionUtils.isEmpty(apps)) {
-            return new ArrayList<>();
+            return Lists.newArrayList();
         }
         List<Integer> appIds = apps.stream().map(App::getId).collect(Collectors.toList());
         Map<Integer, String> nameMap = apps.stream().collect(Collectors.toMap(App::getId, App::getAppName));
@@ -87,7 +91,8 @@ public class RuleServiceImpl implements RuleService {
             AppRuleDTO appRuleDTO = new AppRuleDTO();
             BeanUtils.copyProperties(routeRule, appRuleDTO);
             appRuleDTO.setAppName(app.getAppName());
-//            eventPublisher.publishEvent(new RuleAddEvent(this, appRuleDTO));
+            //TODO 往redis中新增规则
+            applicationEventPublisher.publishEvent(new RuleAddEvent(this, appRuleDTO));
         }
     }
 
@@ -132,7 +137,7 @@ public class RuleServiceImpl implements RuleService {
 
         routeRuleMapper.deleteById(id);
         //TODO redis中删除规则
-//        eventPublisher.publishEvent(new RuleDeleteEvent(this, appRuleDTO));
+        applicationEventPublisher.publishEvent(new RuleDeleteEvent(this, appRuleDTO));
     }
 
     @Override
@@ -199,10 +204,10 @@ public class RuleServiceImpl implements RuleService {
         appRuleDTO.setAppName(statusDTO.getAppName());
         if (EnabledEnum.ENABLE.getCode().equals(statusDTO.getEnabled())) {
             //TODO redis中新增规则
-//            eventPublisher.publishEvent(new RuleAddEvent(this, appRuleDTO));
+            applicationEventPublisher.publishEvent(new RuleAddEvent(this, appRuleDTO));
         } else {
             //TODO redis中删除规则
-//            eventPublisher.publishEvent(new RuleDeleteEvent(this, appRuleDTO));
+            applicationEventPublisher.publishEvent(new RuleDeleteEvent(this, appRuleDTO));
         }
     }
 }

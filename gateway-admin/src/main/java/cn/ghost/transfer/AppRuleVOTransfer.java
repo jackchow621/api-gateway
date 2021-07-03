@@ -1,7 +1,7 @@
 package cn.ghost.transfer;
 
+import cn.ghost.model.AppRuleDTO;
 import cn.ghost.model.bean.RouteRule;
-import cn.ghost.model.dto.AppRuleDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 18:06
  */
 @Mapper

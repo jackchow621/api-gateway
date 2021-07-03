@@ -1,20 +1,29 @@
 package cn.ghost.utils;
 
+import cn.ghost.constants.MatchMethodEnum;
+import cn.ghost.exception.GatewayException;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:31
  */
 public class StringTools {
     private final static String str = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    private static final Map<String, Pattern> PATTERN_MAP = new HashMap<>();
 
     /**
      * generate salt code
@@ -53,5 +62,35 @@ public class StringTools {
         }
         return null;
     }
+
+    /**
+     * @param value
+     * @param matchMethod {@link MatchMethodEnum}
+     * @param matchRule
+     * @return
+     */
+    public static boolean match(String value, Byte matchMethod, String matchRule) {
+        if (MatchMethodEnum.EQUAL.getCode().equals(matchMethod)) {
+            return value.equals(matchRule);
+        } else if (MatchMethodEnum.REGEX.getCode().equals(matchMethod)) {
+            Pattern p = PATTERN_MAP.computeIfAbsent(matchRule, k -> Pattern.compile(k));
+            Matcher m = p.matcher(value);
+            return m.matches();
+        } else if (MatchMethodEnum.LIKE.getCode().equals(matchMethod)) {
+            return value.indexOf(matchRule) != -1;
+        } else {
+            throw new GatewayException("invalid matchMethod");
+        }
+    }
+
+//    public static String byteToStr(byte[] data) {
+//        try {
+//            return new String(data, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
 
 }

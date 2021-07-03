@@ -1,11 +1,11 @@
-package cn.ghost.listener;
+package cn.ghost.listener.event;
 
 import org.springframework.stereotype.Component;
 
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 14:25
  */
 @Component

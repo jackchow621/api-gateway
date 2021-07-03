@@ -3,7 +3,7 @@ package cn.ghost.constants;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 19:03
  */
 public class NacosConstants {

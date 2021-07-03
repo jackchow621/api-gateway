@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:18
  */
 @RestController("/user")

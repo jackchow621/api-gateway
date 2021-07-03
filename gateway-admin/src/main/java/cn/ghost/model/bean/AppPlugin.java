@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 11:43
  */
 @TableName("t_app_plugin")

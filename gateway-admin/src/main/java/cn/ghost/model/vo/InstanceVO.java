@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 14:44
  */
 @Data

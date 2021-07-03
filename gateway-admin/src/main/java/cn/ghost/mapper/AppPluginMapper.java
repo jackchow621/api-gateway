@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 11:45
  */
 public interface AppPluginMapper extends BaseMapper<AppPlugin> {

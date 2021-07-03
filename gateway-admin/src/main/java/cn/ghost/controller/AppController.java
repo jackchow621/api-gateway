@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/02 11:35
  */
 @RestController("/app")

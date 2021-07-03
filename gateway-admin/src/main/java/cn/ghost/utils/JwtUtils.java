@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 16:49
  */
 public class JwtUtils {

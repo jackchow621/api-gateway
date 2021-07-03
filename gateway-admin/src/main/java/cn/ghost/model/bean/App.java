@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 17:56
  */
 @TableName("t_app")

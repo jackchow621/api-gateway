@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 /**
  * @program api-gateway
  * @description:
- * @author: zoulinjun
+ * @author: jackchow
  * @create: 2021/07/01 18:02
  */
 @TableName("t_route_rule")
