@@ -18,6 +18,7 @@
         <module>gateway-server</module>
         <module>gateway-common</module>
         <module>gateway-admin</module>
+        <module>gateway-client-spring-boot-starter</module>
     </modules>
 
     <properties>
